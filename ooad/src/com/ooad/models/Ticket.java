@@ -1,6 +1,13 @@
 package com.ooad.models;
 
 public class Ticket {
+	private int id;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	private int fromUser;
 	private int toUser;
 	private String description;
