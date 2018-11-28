@@ -14,19 +14,20 @@ import com.ooad.dao.TicketDao;
 import com.ooad.dao.TicketDaoImpl;
 
 import com.ooad.models.Ticket;
-@WebServlet("/TicketDisplayController")
+@WebServlet("/display")
 public class TicketDisplayController extends HttpServlet {
 		private static final long serialVersionUID = 1L;
 		
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			int id=1;
+			String search_str=request.getParameter("search");
 			System.out.println("In ticket display controller");
 			TicketDao ticketDao = new TicketDaoImpl();
-			List<Ticket> t=ticketDao.getAllTicketsFrom(id);
+			List<Ticket> t=ticketDao.searchTicket(search_str , id);
 			request.setAttribute("list",t);
 		
-				request.getRequestDispatcher("display.jsp").forward(request, response);
+				request.getRequestDispatcher("dashbord.jsp").forward(request, response);
 			}
 
 		}

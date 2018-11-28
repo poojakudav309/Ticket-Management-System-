@@ -44,18 +44,35 @@ public class LoginController extends HttpServlet {
 			
 			request.getRequestDispatcher("dashbord.jsp").forward(request, response);
 		}else if(submitType.equals("register")){
+			String uname=request.getParameter("username");
+			String passw=request.getParameter("password");
+			if(uname!="" & passw!=""){
+			System.out.println(request.getParameter("first_name"));
 			c.setFirstName(request.getParameter("first_name"));
 			c.setUsername(request.getParameter("username"));
+			System.out.println(request.getParameter("username"));
 			c.setPassword(request.getParameter("password"));
+			System.out.println(request.getParameter("password"));
 			c.setEmail(request.getParameter("email"));
+			System.out.println(request.getParameter("email"));
 			c.setGender(request.getParameter("gender"));
+			System.out.println(request.getParameter("gender"));
 			c.setLastName(request.getParameter("last_name"));
+			System.out.println(request.getParameter("last_name"));
 			c.setPhone(Integer.parseInt(request.getParameter("phone")));
+			System.out.println(request.getParameter("phone"));
 			c.setRole(request.getParameter("role"));
+			System.out.println(request.getParameter("role"));
 			c.setTeam(request.getParameter("team"));
-			customerDao.register(c);
+			System.out.println(request.getParameter("team"));
+			int x=customerDao.register(c);
 			request.setAttribute("successMessage", "Registration done, please login!");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
+			}
+			else{
+				request.setAttribute("message", "Error");
+				request.getRequestDispatcher("register.jsp").forward(request, response);
+			}
 		}else{
 			request.setAttribute("message", "Data Not Found! Please register!");
 			request.getRequestDispatcher("register.jsp").forward(request, response);

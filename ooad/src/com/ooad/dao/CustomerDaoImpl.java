@@ -36,6 +36,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			status = ps.executeUpdate();
 			conn.close();
 		}catch(Exception e){
+			System.out.println("exception");
 			System.out.println(e);
 		}
 		return status;

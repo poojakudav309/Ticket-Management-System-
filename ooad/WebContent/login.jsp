@@ -30,8 +30,9 @@
 	<form name="loginform" action="LoginController" method="post" onsubmit="return loginValidate()" >
 	<br>
 	${message}<br>
+	<div id="result">
 	${successMessage}<br>
-	
+	</div>
 	
 	Username: <input type="text" name="username" id="username"><br>
 	Password: <input type="password" name="password" id="password"><br>

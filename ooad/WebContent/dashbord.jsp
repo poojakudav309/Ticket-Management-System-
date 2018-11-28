@@ -12,8 +12,10 @@ pageEncoding="UTF-8"%>
   <p > Dashboard</p>
 
 
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for tickets." style="width:50%" >
+<form method="get" action="display" id="searchbox">
+<input type="text" id="myInput" name="search" onkeyup="myFunction()" placeholder="Search for tickets." style="width:50%" >
+<button type="submit">search</button>
+</form>
 <table class="table table table-hover" id="myTable" style="width:70%" >
 <c:forEach items="${list}" var="l" >
     <tr>
@@ -22,6 +24,7 @@ pageEncoding="UTF-8"%>
         <td>${l.description}</td>
         <td>${l.status}</td>
         <td>${l.type}</td>
+       
         <td ><button class="cmt" >view comments</button></td>
                
     </tr>
@@ -40,6 +43,24 @@ $(".cmt").click(function(e) {
            url: "comment",
            data: "tic_id="+21 // serializes the form's elements.
            
+         });
+
+    // avoid to execute the actual submit of the form.
+});
+
+$("#searchbox").submit(function(e) {
+    var form = $(this);
+    var url = form.attr('action');
+    var x=${userId}
+    e.preventDefault(); 
+    $.ajax({
+           type: "get",
+           url: url,
+           data: form.serialize()+"&userid="+x, // serializes the form's elements.
+           success: function(data)
+           {
+               location.reload(); // show response from the php script.
+           }
          });
 
     // avoid to execute the actual submit of the form.

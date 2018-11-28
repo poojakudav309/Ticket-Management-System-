@@ -10,8 +10,9 @@
 </head>
 <body>
 <form name="regform" action="LoginController" method="post" onsubmit="return regValidate()">
-	<br>${message}<br>
-
+	<div id="msg">
+	${message}
+	</div>
 	Username  : <input type="text" name="username"> <br>
 	<div id="username_error"></div><br>
 	First name: <input class="form-control" type="text" name="first_name"><br><br>
@@ -27,7 +28,7 @@
 	<br>
 	<div id="password_error"></div><br>
 	
-	<input type="submit" name="submit"  class="btn btn-default" value="register" >
+	<input type="submit" name ="submit" id="submit" class="btn btn-default" value="register" >
 	<input type="reset" name="reset">
 	
 	</form>

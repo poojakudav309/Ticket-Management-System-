@@ -137,14 +137,10 @@ public class TicketDaoImpl implements TicketDao {
 			System.out.println(e);
 		}
 		
-		
-		
-		
-		
 		return l;
 	}
 	
-//change the sql query.
+
 	public int  postComment(Comment c){
 		int status = 0;
 		try{
@@ -168,8 +164,8 @@ public class TicketDaoImpl implements TicketDao {
 		List<Ticket> l=new ArrayList<>();
 		try{
 			conn = db.getConnection();
-			ps =conn.prepareStatement("select * from tickets where from_user=? lower(description) like '%?%'");
-			ps.setString(2, x);
+			ps =conn.prepareStatement("select * from tickets where from_user=? and description like ?");
+			ps.setString(2,"%"+ x+"%");
 			ps.setInt(1, y);
 			ResultSet rs = ps.executeQuery();
 		
